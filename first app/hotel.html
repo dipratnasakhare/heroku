@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      .grid > div > img {
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 20% 50% 30%;
+
+        row-gap: 35px;
+        padding: 20px;
+      }
+      .grid > div {
+        height: 150px;
+      }
+      .grid > div:nth-child(1) {
+        padding: 0px 15px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="pagination"></div>
+    <div id="box"></div>
+    <footer></footer>
+  </body>
+</html>
+
+<script>
+  async function data(i) {
+    let res = await fetch(`http://localhost:3000/posts?_page=${i}&_limit=5`, {
+      method: "GET",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    let data = await res.json();
+
+    display(data);
+  }
+
+  function display(arr) {
+    document.querySelector("#box").innerHTML = "";
+    arr.forEach((ele) => {
+      let div1 = document.createElement("div");
+      let img = document.createElement("img");
+      img.src = ele.img;
+
+      div1.append(img);
+      let div2 = document.createElement("div");
+      let h1 = document.createElement("h2");
+      h1.innerText = `${ele.title} ⭐⭐⭐👍`;
+      h1.style.color = "blue";
+
+      let p = document.createElement("p");
+      p.innerText = `1 Night, 2 Aults ₹ ${ele.price}`;
+      let p1 = document.createElement("p");
+      p1.innerText = `Description ${ele.desc}`;
+      div2.append(h1, p, p1);
+
+      let div3 = document.createElement("div");
+      let p2 = document.createElement("p");
+      p2.innerText = `Ratings ${ele.rating}`;
+      let btn = document.createElement("button");
+      btn.innerText = "ADD Hotel";
+      btn.style.color = "aliceblue";
+      btn.style.backgroundColor = "blue";
+      btn.style.padding = "5px";
+      div3.append(p2, btn);
+      btn.addEventListener("click", () => {
+        localStorage.setItem("hotelcheck", JSON.stringify(ele));
+        window.location.href = "cheak.html";
+      });
+
+      let div = document.createElement("div");
+      div.setAttribute("class", "grid");
+
+      div.append(div1, div2, div3);
+
+      document.querySelector("#box").append(div);
+    });
+  }
+
+  function data1() {
+    for (let i = 2; i <= 5; i++) {
+      let btn = document.createElement("button");
+
+      btn.innerText = i - 1;
+
+      btn.onclick = () => {
+        data(i);
+      };
+
+      document.querySelector("#pagination").append(btn);
+    }
+  }
+
+  data1();
+
+  data2();
+  async function data2() {
+    let res = await fetch(`http://localhost:3000/posts?_page=1&_limit=5`, {
+      method: "GET",
+
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    let data = await res.json();
+
+    display(data);
+  }
+</script>

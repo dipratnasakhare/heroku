@@ -1,0 +1,46 @@
+{
+  "posts": [
+    {
+      "img": "https://www.hotelierindia.com/public/images/2020/02/20/Image_Radisson-Hotel-Group-Starts-2020-On-A-High-With-17-New-Hotels-In-India.jpg",
+      "tilte": "",
+      "desc": "",
+      "price": "",
+      "rating": "",
+      "id": 2
+    },
+    {
+      "img": "https://th.bing.com/th/id/OIP.9vnJlTb4s0gvJ5f8HgBviwHaE7?w=221&h=180&c=7&r=0&o=5&dpr=1.25&pid=1.7",
+      "tilte": "dfsa",
+      "desc": "sadf",
+      "price": "fsad",
+      "rating": "fds",
+      "id": 3
+    },
+    {
+      "img": "https://th.bing.com/th/id/OIP.1yEwMMKsqCZeYqXbUopy5QHaEK?pid=ImgDet&rs=1",
+      "tilte": "dfsa",
+      "desc": "sadf",
+      "price": "fsad",
+      "rating": "fds",
+      "id": 4
+    },
+    {
+      "img": "https://th.bing.com/th/id/OIP.jaJUt4ERHTMOxR1eX5JU7wHaE7?pid=ImgDet&rs=1",
+      "tilte": "dfsa",
+      "desc": "sadf",
+      "price": "fsad",
+      "rating": "fds",
+      "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

@@ -1,0 +1,13 @@
+#regester{
+    display: grid;
+    width: 500px;
+    margin: auto;
+    margin-top: 45px;
+}
+
+#regester>input{
+    margin-bottom: 10px;
+}
+h1{
+    text-align: center;
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+
+<body id="regester">
+    <input id="user" type="text" placeholder="Enter Username">
+    <input id="pass" type="password" placeholder="Enter Password">
+    <button onclick="login()">Login</button>
+</body>
+
+</html>
+
+<script>
+
+    async function login() {
+
+        let pass1 = document.querySelector('#pass').value
+        let user1 = document.querySelector('#user').value
+
+
+
+        let obj = {
+            password: pass1,
+            username: user1,
+
+        }
+
+
+        let res = await fetch('https://masai-api-mocker.herokuapp.com/auth/login', {
+
+            method: "POST",
+
+            body: JSON.stringify(obj),
+
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+
+        })
+
+
+        let data = await res.json()
+
+        userdata(user1,data.token)
+
+
+
+    }
+
+
+    async function userdata(user,token){
+
+        let res=await fetch(`https://masai-api-mocker.herokuapp.com/user/${user}`,{
+
+                method:"GET",
+
+                headers:{
+                    'Content-Type':'application/json',
+                     
+                    Authorization:` Bearer ${token}`
+                }
+
+
+
+        })
+
+        let data=await res.json()
+
+        console.log(data)
+
+   localStorage.setItem("hoteluser", JSON.stringify(data))
+
+   alert("Succesfull Login")
+
+window.location.href="admin.html"
+
+
+
+     }
+
+ 
+
+
+
+</script>

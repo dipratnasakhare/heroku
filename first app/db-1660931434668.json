@@ -1,0 +1,51 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "img": "dsf",
+      "tilte": "",
+      "desc": "",
+      "price": "",
+      "rating": "",
+      "id": 2
+    },
+    {
+      "img": "adsf",
+      "tilte": "dfsa",
+      "desc": "sadf",
+      "price": "fsad",
+      "rating": "fds",
+      "id": 3
+    },
+    {
+      "img": "adsf",
+      "tilte": "dfsa",
+      "desc": "sadf",
+      "price": "fsad",
+      "rating": "fds",
+      "id": 4
+    },
+    {
+      "img": "adsf",
+      "tilte": "dfsa",
+      "desc": "sadf",
+      "price": "fsad",
+      "rating": "fds",
+      "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}

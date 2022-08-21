@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="regester">
+        <input id="name" type="text" placeholder="Enter Name">
+        <input id="email" type="email" placeholder="Enter Email">
+        <input id="pass" type="password" placeholder="Enter Password">
+        <input id="user" type="text" placeholder="Enter Username">
+        <input id="mobile" type="tel" placeholder="Enter Mobile Number">
+        <input id="desc" type="text" placeholder="Enter Description">
+        <button onclick="regester()">Submit</button>
+
+        <br><br>
+        <button><a href="login.html">Login</a></button>
+    </div>
+</body>
+</html>
+<!-- https://masai-api-mocker.herokuapp.com/ -->
+<script>
+
+async  function regester(){
+
+      let name1=document.querySelector('#name').value 
+      let email1=document.querySelector('#email').value
+      let pass1=document.querySelector('#pass').value
+      let user1=document.querySelector('#user').value
+      let mobile1=document.querySelector('#mobile').value
+      let desc1=document.querySelector('#desc').value
+
+
+ let obj={
+  name:name1,
+  email:email1,
+  password:pass1,
+  username:user1,
+  mobile:mobile1,
+  description:desc1
+  }
+
+  
+        let res=await fetch('https://masai-api-mocker.herokuapp.com/auth/register', {
+
+            method:"POST",
+
+            body:JSON.stringify(obj),
+
+            headers:{
+                'Content-Type':'application/json'
+            }
+
+
+        })
+
+
+       let data=await res.json()
+
+       console.log(data)
+
+
+
+     if(data.error==true){
+        alert("place cheak your data")
+     }else{
+        alert("sucessfull signup")
+     }
+
+
+
+
+
+
+
+
+
+  }       
+  
+
+
+       
+
+
+
+
+</script>

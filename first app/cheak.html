@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .grid > div > img {
+        width: 100%;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: space-evenly;
+        margin: auto;
+        gap: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Details</h1>
+
+    <div id="box"></div>
+  </body>
+</html>
+
+<script>
+  let arr = JSON.parse(localStorage.getItem("hotelcheck"));
+
+  display(arr);
+  function display(arr) {
+    document.querySelector("#box").innerHTML = "";
+
+    let div1 = document.createElement("div");
+    let img = document.createElement("img");
+    img.src = arr.img;
+
+    div1.append(img);
+    let div2 = document.createElement("div");
+    let h1 = document.createElement("h2");
+    h1.innerText = arr.title;
+    let p = document.createElement("p");
+    p.innerText = `1 Night, 2 Aults ₹ ${arr.price}`;
+    p.style.fontWeight = "bold";
+    let p1 = document.createElement("p");
+    p1.innerText = arr.desc;
+
+    let h2=document.createElement("h2")
+    h2.innerText="Details"
+    let p2 = document.createElement("p");
+    p2.innerText = `Lorem ipsum dolor, sit amet consectetur adipisicing elit. Sunt hic labore sequi illo, mollitia quas nihil perspiciatis. Ex veritatis, dolor error expedita architecto, eos ut ipsum incidunt voluptatibus beatae aut!
+    Deserunt, deleniti ea rerum, exercitationem laborum atque nobis velit adipisci, nisi aut assumenda minima accusantium excepturi minus! Rem voluptate voluptatibus harum quam deserunt eos. Modi magnam illo similique dignissimos doloremque!
+    Vitae magni nihil mollitia, quaerat iusto tempore aperiam obcaecati repudiandae corrupti magnam nisi dolores. Porro cupiditate inventore ut quod quos accusantium animi dolor, officiis rem voluptatibus odio quo, quas tempore.
+    Officiis ducimus ad tenetur facilis cumque corrupti laudantium quae error dolore quis culpa vel exercitationem atque ex illo sed odit, quibusdam magnam in, non similique laborum nostrum. Aliquam, non ad!
+    Inventore reiciendis nulla numquam libero dolores suscipit dolore tempora veritatis eius. Maiores ipsam doloribus quaerat et excepturi quibusdam ut ea laborum mollitia fuga. Ex inventore ipsum consectetur voluptate tempore fugiat.
+    Quas necessitatibus incidunt nostrum. Saepe a nobis consectetur, nam odit ut velit ducimus beatae blanditiis porro molestiae pariatur recusandae numquam quod repellendus earum nostrum corrupti molestias soluta. Cupiditate, magni minus?
+    Quod, blanditiis sunt? Velit eos omnis quis earum laboriosam ipsa nisi qui, blanditiis aperiam ullam tempora accusamus? Suscipit, velit vel nisi reiciendis porro et iste tenetur, corporis quia saepe neque.`;
+
+    let btn = document.createElement("button");
+    btn.innerText = "Cheakout";
+    btn.style.color = "azure";
+    btn.style.backgroundColor = "blue";
+
+    let div = document.createElement("div");
+    div.setAttribute("class", "grid");
+
+    div2.append(h1, h2, p2, p, p1, btn);
+
+    div.append(div1, div2);
+
+    document.querySelector("#box").append(div);
+  }
+</script>

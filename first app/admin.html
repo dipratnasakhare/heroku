@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="admin"></h1>
+    <h1><a href="hotel.html">Hotel website</a></h1>
+
+    <div id="regester">
+        <h1>To Post Data Of Hotel</h1>
+        <input id="img" type="text" placeholder="Enter Image URL">
+        <input id="tilte" type="text" placeholder="Enter Tilte ">
+        <input id="desc" type="text" placeholder="Enter Description">
+        <input id="price" type="text" placeholder="Enter Price">
+        <input id="rating" type="text" placeholder="Enter Rating">
+        <button onclick="create()">Submit</button>
+    </div>
+
+    <div id="regester">
+        <h1>To get value</h1>
+        <input id="id" type="text" placeholder="Enter id">
+        <button onclick="getdata()">Submit</button>
+    </div>
+
+    <div id="regester">
+        <h1>To Updata Data Of Hotel</h1>
+        <input id="id1" type="number" placeholder="Enter id">
+        <input id="img1" type="text" placeholder="Enter Image URL">
+        <!-- <input id="tilte1" type="text" placeholder="Enter Tilte ">
+        <input id="desc1" type="text" placeholder="Enter Description">
+        <input id="price1" type="text" placeholder="Enter Price">
+        <input id="rating1" type="text" placeholder="Enter Rating"> -->
+        <button onclick="create1()">Submit</button>
+    </div>
+
+
+    <div id="regester">
+        <h1>To update Whole data</h1>
+        <input id="id2" type="number" placeholder="Enter id">
+        <input id="img2" type="text" placeholder="Enter Image URL">
+        <input id="tilte2" type="text" placeholder="Enter Tilte ">
+        <input id="desc2" type="text" placeholder="Enter Description">
+        <input id="price2" type="text" placeholder="Enter Price">
+        <input id="rating2" type="text" placeholder="Enter Rating">
+        <button onclick="create2()">Submit</button>
+    </div>
+</body>
+
+</html>
+<script>
+    let user = JSON.parse(localStorage.getItem("hoteluser"))
+
+    let x = document.querySelector("#admin")
+    x.innerText = `Hellow Admin User ${user.name}`
+
+    async function create() {
+
+        let obj = {
+            img: document.querySelector('#img').value,
+            tilte: document.querySelector('#tilte').value,
+            desc: document.querySelector('#desc').value,
+            price: document.querySelector('#price').value,
+            rating: document.querySelector('#rating').value,
+        }
+
+        console.log(obj)
+
+        let res = await fetch('http://localhost:3000/posts', {
+
+            method: "POST",
+
+            body: JSON.stringify(obj),
+
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        let data = await res.json()
+
+        console.log(data)
+
+    }
+
+
+
+    async function getdata() {
+        let x = document.querySelector("#id").value
+
+        let res = await fetch(`http://localhost:3000/posts?id=${x}`, {
+
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+
+        let data = await res.json()
+
+        console.log(data, "ji")
+    }
+
+
+    async function create1() {
+
+        let x = document.querySelector("#id1").value
+       
+
+let obj = {
+    img: document.querySelector('#img1').value,
+    tilte: document.querySelector('#tilte1').value,
+    desc: document.querySelector('#desc1').value,
+    price: document.querySelector('#price1').value,
+    rating: document.querySelector('#rating1').value,
+}
+
+console.log(obj)
+
+let res = await fetch(`http://localhost:3000/posts/${x}`, {
+
+    method: "PATCH",
+
+    body: JSON.stringify(obj),
+
+    headers: {
+        'Content-Type': 'application/json'
+    }
+})
+
+let data = await res.json()
+
+console.log(data)
+
+}
+
+
+
+async function create2() {
+
+let x = document.querySelector("#id2").value
+
+
+let obj = {
+img: document.querySelector('#img2').value,
+title: document.querySelector('#tilte2').value,
+desc: document.querySelector('#desc2').value,
+price: document.querySelector('#price2').value,
+rating: document.querySelector('#rating2').value,
+}
+
+console.log(obj)
+
+let res = await fetch(`http://localhost:3000/posts/${x}`, {
+
+method: "PUT",
+
+body: JSON.stringify(obj),
+
+headers: {
+'Content-Type': 'application/json'
+}
+})
+
+let data = await res.json()
+
+console.log(data)
+
+}
+
+</script>
